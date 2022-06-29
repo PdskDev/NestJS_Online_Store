@@ -12,7 +12,7 @@
                 <div class="row mb-3">
                     <label for="name" class="col-lg-2 col-md-6 col-sm-12 col-form-label">Name:</label>
                     <div class="col-lg-10 col-md-6 col-sm-12">
-                        <input type="text" name="name" id="name" required>
+                        <input type="text" name="name" id="name" class="form-control" required>
                     </div>
                 </div>
             </div>
@@ -20,21 +20,21 @@
                 <div class="row mb-3">
                     <label for="price" class="col-lg-2 col-md-6 col-sm-12 col-form-label">Price:</label>
                     <div class="col-lg-10 col-md-6 col-sm-12">
-                        <input type="text" name="price" id="price" required>
+                        <input type="text" name="price" id="price" class="form-control" required>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <div class="mb-3 row">
+                <div class="row mb-3">
                     <label for="image" class="col-lg-2 col-md-6 col-sm-12 col-form-label">Image:</label>
                     <div class="col-lg-10 col-md-6 col-sm-12">
                         <input type="file" class="form-control" name="image">
                     </div>
                 </div>
-                <div class="col">&nbsp;</div>
             </div>
+            <div class="col">&nbsp;</div>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
@@ -66,11 +66,21 @@
                 <tr>
                     <td>{{getId}}</td>
                     <td>
-                        <img src="/uploads/{{getImage}}" alt="Product {{getName}}" class="card-img-top img-card">
+                        <img src="/uploads/{{getImage}}" alt="Product {{getName}}" class="card-img-top img-card img-fluid">
                     </td>
                     <td>{{getName}}</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
+                    <td>
+                        <button class="btn btn-primary">
+                            <i class="bi-pencil"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <form action="products/{{getId}}" method="POST">
+                        <button class="btn btn-danger">
+                            <i class="bi-trash"></i>
+                            </button>
+                        </form>
+                    </td>
                 </tr>
                 {{/each}}
             </tbody>
