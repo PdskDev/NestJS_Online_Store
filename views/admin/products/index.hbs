@@ -11,6 +11,12 @@
         <p class="alert alert-danger">{{this}}</p>
         {{/each}}
         {{/if}}
+        
+        {{#if msgAddProduct}}
+        {{#each msgAddProduct}}
+        <p class="alert alert-success">{{this}}</p>
+        {{/each}}
+        {{/if}}
         <form action="products/store" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col">

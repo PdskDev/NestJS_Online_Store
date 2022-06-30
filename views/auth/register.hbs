@@ -8,23 +8,28 @@
                     Register
                 </div>
                 <div class="card-body">
+                     {{#if flashErrors}}
+                     {{#each flashErrors}}
+                     <p class="alert alert-danger">{{this}}</p>
+                     {{/each}}
+                     {{/if}}
                     <form action="/auth/store" method="post">
                     <div class="row form-group">
                         <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
                         <div class="col-md-6 pb-2">
-                            <input type="text" name="name" id="name" required class="form-control">
+                            <input type="text" name="name" id="name" class="form-control">
                         </div>
                     </div>
                     <div class="row form-group">
                         <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
                         <div class="col-md-6 pb-2">
-                            <input type="text" name="email" id="email" required class="form-control">
+                            <input type="text" name="email" id="email" class="form-control">
                         </div>
                     </div>
                     <div class="row form-group">
                         <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                         <div class="col-md-6 pb-2">
-                            <input type="password" name="password" id="password" required class="form-control">
+                            <input type="password" name="password" id="password" class="form-control">
                         </div>
                     </div>
                     <div class="row form-group mb-0">

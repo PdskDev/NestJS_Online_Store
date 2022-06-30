@@ -34,6 +34,7 @@ async function bootstrap() {
       res.locals.flashErrors = flashErrors;
       req.session.flashErrors = null;
     }
+
     next();
   });
 

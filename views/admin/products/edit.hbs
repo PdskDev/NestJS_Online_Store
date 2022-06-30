@@ -6,6 +6,11 @@
         Edit Product
     </div>
     <div class="card-body">
+        {{#if flashErrors}}
+        {{#each flashErrors}}
+        <p class="alert alert-danger">{{this}}</p>
+        {{/each}}
+        {{/if}}
         {{#with viewData.product}}
         <form action="/admin/products/update/{{getId}}" method="POST" enctype="multipart/form-data">
         <div class="row">
@@ -13,7 +18,7 @@
                 <div class="row mb-3">
                     <label for="name" class="col-lg-2 col-md-6 col-sm-12 col-form-label">Name:</label>
                     <div class="col-lg-10 col-md-6 col-sm-12">
-                        <input type="text" name="name" id="name" value="{{getName}}" class="form-control" required>
+                        <input type="text" name="name" id="name" value="{{getName}}" class="form-control">
                     </div>
                 </div>
             </div>
@@ -21,7 +26,7 @@
                 <div class="row mb-3">
                     <label for="price" class="col-lg-2 col-md-6 col-sm-12 col-form-label">Price:</label>
                     <div class="col-lg-10 col-md-6 col-sm-12">
-                        <input type="text" name="price" id="price" value="{{getPrice}}" class="form-control" required>
+                        <input type="text" name="price" id="price" value="{{getPrice}}" class="form-control">
                     </div>
                 </div>
             </div>
@@ -39,7 +44,7 @@
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea name="description" id="description" rows="3" class="form-control" required>{{getDescription}}</textarea>
+            <textarea name="description" id="description" rows="3" class="form-control">{{getDescription}}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
         </form>

@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { User } from 'src/models/user.entity';
 import { UsersService } from 'src/models/users.service';
+import { UserValidator } from 'src/validators/user.validator';
 
 @Controller('auth')
 export class AuthController {
@@ -28,15 +29,24 @@ export class AuthController {
   }
 
   @Post('/store')
-  @Redirect('/products')
-  async store(@Body() body) {
-    const newUser = new User();
-    newUser.setName(body.name);
-    newUser.setEmail(body.email);
-    newUser.setPassword(body.password);
-    newUser.setRole('client');
-    newUser.setBalance(1000);
-    await this.usersService.CreateOrUpdate(newUser);
+  //@Redirect('/products')
+  async store(@Body() body, @Req() request, @Res() response) {
+    const toValidate: string[] = ['name', 'email', 'password'];
+    const errors: string[] = UserValidator.validate(body, toValidate);
+
+    if (errors.length > 0) {
+      request.session.flashErrors = errors;
+      return response.redirect('/auth/register');
+    } else {
+      const newUser = new User();
+      newUser.setName(body.name);
+      newUser.setEmail(body.email);
+      newUser.setPassword(body.password);
+      newUser.setRole('client');
+      newUser.setBalance(1000);
+      await this.usersService.CreateOrUpdate(newUser);
+      return response.redirect('/auth/login');
+    }
   }
 
   @Get('/login')
