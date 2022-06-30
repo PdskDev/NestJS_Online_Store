@@ -32,7 +32,7 @@ export class AdminProductsController {
 
   @Post('/store')
   @UseInterceptors(FileInterceptor('image', { dest: './public/uploads' }))
-  @Redirect('/')
+  @Redirect('/admin/products')
   async store(@Body() body, @UploadedFile() file: Express.Multer.File) {
     const newProduct = new Product();
     newProduct.setName(body.name);
