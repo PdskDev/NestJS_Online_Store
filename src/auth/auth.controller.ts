@@ -66,11 +66,21 @@ export class AuthController {
     const pass = body.password;
     const user = await this.usersService.login(email, pass);
     if (user) {
-      request.session.user = {
-        id: user.getId(),
-        name: user.getName(),
-        role: user.getRole(),
-      };
+      if (user.getRole() == 'admin') {
+        request.session.user = {
+          id: user.getId(),
+          name: user.getName(),
+          role: user.getRole(),
+          isAdmin: true,
+        };
+      } else {
+        request.session.user = {
+          id: user.getId(),
+          name: user.getName(),
+          role: user.getRole(),
+        };
+      }
+
       return response.redirect('/products');
     } else {
       return response.redirect('auth/login');
