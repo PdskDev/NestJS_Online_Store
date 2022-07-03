@@ -1,0 +1,46 @@
+{{#> app}}
+{{#*inline "content"}}
+<div class="card">
+    <div class="card-header">
+        Products in Cart
+    </div>
+    <div class="card-body">
+        {{#if viewData.productsInCart}}
+        <table class="table table-bordered table-striped text-center">
+            <thead>
+                <tr>
+                    <td scope="col">Ref.</td>
+                    <td scope="col">Name</td>
+                    <td scope="col">Price</td>
+                    <td scope="col">Quantity</td>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each viewData.productsInCart}}
+                <tr>
+                    <td>{{getId}}</td>
+                    <td>{{getName}}</td>
+                    <td>${{getPrice}}</td>
+                    <td>{{lookup ../session.products id}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="text-end">
+                <a class="btn btn-outline-secondary mb2"><b>Total to pay</b> ${{viewData.total}}</a>
+                {{#if viewData.productsInCart}}
+                <a href="/cart/purchase" class="btn bg-primary text-white mb-2">Purchase</a>
+                <a href="/cart/delete" class="btn bg-danger mb-2">Clear my Cart</a>
+                {{/if}}
+            </div>
+        </div>
+        {{else}}
+        <p class="bg-alert alert-warning text-center py-2">
+            Your Cart is empty !
+        </p>
+        {{/if}}
+    </div>
+</div>
+{{/inline}}
+{{/app}}

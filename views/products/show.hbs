@@ -12,7 +12,20 @@
                     {{getName}} ${{getPrice}}
                 </h5>
                 <p class="card-text">{{getDescription}}</p>
-                <p class="card-text"><small class="text-muted">Add to Cart</small> 
+                <p class="card-text">
+                    <form action="/cart/add/{{getId}}" method="post">
+                    <div class="row">
+                        <div class="col-auto">
+                            <div class="input-group col-auto">
+                                <div class="input-group-text">Quantity</div>
+                                <input type="number" min="1" max="10" value="1" name="quantity" id="quantity" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn bg-primary text-white">Add to cart</button>
+                        </div>
+                    </div>
+                    </form> 
                 <small><a class="btn btn-primary" href="/products">Back to Catalog</a></small></p>
             </div>
         </div>

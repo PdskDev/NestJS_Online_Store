@@ -46,6 +46,14 @@ async function bootstrap() {
     }
   });
 
+  app.use('/account*', function (req, res, next) {
+    if (req.session.user) {
+      next();
+    } else {
+      res.redirect('/products');
+    }
+  });
+
   await app.listen(3000);
 }
 bootstrap();

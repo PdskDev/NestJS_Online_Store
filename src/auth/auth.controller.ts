@@ -83,7 +83,7 @@ export class AuthController {
 
       return response.redirect('/products');
     } else {
-      return response.redirect('auth/login');
+      return response.redirect('/auth/login');
     }
   }
 
