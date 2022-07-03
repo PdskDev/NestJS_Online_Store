@@ -1,12 +1,27 @@
 import { Controller, Get, Render } from '@nestjs/common';
+import { ProductsService } from './models/products.service';
 
 @Controller()
 export class AppController {
+  //@Get('/')
+  //@Render('index')
+  //index() {
+  //  const viewData = [];
+  //  viewData['title'] = 'Home Page -Online Store';
+  //  return {
+  //    viewData: viewData,
+  //  };
+  //}
+
+  constructor(private readonly productsService: ProductsService) {}
+
   @Get('/')
-  @Render('index')
-  index() {
+  @Render('products/index')
+  async index() {
     const viewData = [];
-    viewData['title'] = 'Home Page -Online Store';
+    viewData['title'] = 'Products - Online Store';
+    viewData['subtitle'] = "Welcome to Nadet's NestJs Online Store";
+    viewData['products'] = await this.productsService.findAll();
     return {
       viewData: viewData,
     };
